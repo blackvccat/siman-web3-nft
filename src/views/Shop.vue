@@ -130,8 +130,10 @@ const nftProducts = computed(() => [
   {
     id: 6,
     name: appStore.t('shop.products.longTeng'),
-    description: appStore.t('shop.products.flyingDragonDesc'),
-    image: '/images/nftwhisky-nft.jpg'
+    description: appStore.t('shop.products.longTengDesc'),
+    image: '/images/nftwhisky-nft.jpg',
+    rarity: 'legendary',
+    price: '2.5'
   }
 ])
 

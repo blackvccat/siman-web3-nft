@@ -1,0 +1,609 @@
+// 全局样式变量 - 中国红主题
+:root {
+  // 中国红主色调
+  --primary-color: #DC2626;        // 中国红
+  --primary-light: #EF4444;        // 亮红
+  --primary-dark: #B91C1C;         // 深红
+  --primary-darker: #991B1B;       // 更深红
+  
+  // 红色系霓虹色
+  --neon-red: #FF0000;             // 纯红霓虹
+  --neon-pink: #FF6B9D;            // 粉红霓虹
+  --neon-orange: #FF8C00;          // 橙红霓虹
+  --neon-gold: #FFD700;            // 金红霓虹
+  --neon-crimson: #DC143C;         // 深红霓虹
+  
+  // 辅助色（保持科技感）
+  --secondary-color: #FFFFFF;
+  --accent-color: #FCCA73;         // 金色点缀
+  --accent-light: #F2B7B5;
+  --accent-dark: #EFA5A2;
+  
+  // 文字颜色
+  --text-primary: #FFFFFF;
+  --text-secondary: #FECACA;       // 浅红色文字
+  --text-light: #F87171;           // 中等红色文字
+  --text-white: #FFFFFF;
+  
+  // 中国红背景色
+  --bg-primary: #0F0F0F;           // 深黑背景
+  --bg-secondary: #1A0A0A;         // 带红色调的深色
+  --bg-tertiary: #2D0F0F;          // 更深的红色调
+  --bg-dark: rgba(0, 0, 0, 0.8);
+  --bg-overlay: rgba(0, 0, 0, 0.9);
+  
+  // 边框颜色
+  --border-color: #4A1A1A;         // 深红色边框
+  --border-light: #2D0F0F;
+  --border-neon: rgba(220, 38, 38, 0.5);  // 红色霓虹边框
+  
+  // 字体
+  --font-primary: 'Inter', sans-serif;
+  --font-secondary: 'Itim', cursive;
+  --font-mono: 'JetBrains Mono', monospace;
+  --font-tech: 'Orbitron', monospace;
+  
+  // 字体大小 - 优化后的Web3风格（测试工程师优化）
+  --font-xs: 11px;
+  --font-sm: 13px;
+  --font-base: 15px;  // 提高基础字体大小，提升可读性
+  --font-lg: 17px;
+  --font-xl: 19px;
+  --font-2xl: 21px;
+  --font-3xl: 25px;
+  --font-4xl: 29px;
+  --font-5xl: 33px;
+  --font-6xl: 41px;
+  --font-7xl: 49px;
+  --font-8xl: 57px;
+  
+  // 间距 - 紧凑的Web3风格（测试工程师优化）
+  --spacing-xs: 3px;   // 增加最小间距，提升触摸体验
+  --spacing-sm: 5px;
+  --spacing-md: 9px;
+  --spacing-lg: 13px;
+  --spacing-xl: 17px;
+  --spacing-2xl: 25px;
+  --spacing-3xl: 33px;
+  --spacing-4xl: 41px;
+  --spacing-5xl: 49px;
+  
+  // 圆角 - 现代Web3风格
+  --radius-sm: 2px;
+  --radius-md: 4px;
+  --radius-lg: 6px;
+  --radius-xl: 8px;
+  --radius-2xl: 12px;
+  --radius-3xl: 16px;
+  --radius-full: 50%;
+  
+  // 中国红阴影效果
+  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.3);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.4);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.4);
+  --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.4);
+  --shadow-custom: 0px 4px 4px 0px rgba(0, 0, 0, 0.5);
+  
+  // 红色系霓虹阴影
+  --shadow-neon-red: 0 0 10px rgba(220, 38, 38, 0.4), 0 0 20px rgba(220, 38, 38, 0.2);
+  --shadow-neon-pink: 0 0 10px rgba(255, 107, 157, 0.4), 0 0 20px rgba(255, 107, 157, 0.2);
+  --shadow-neon-orange: 0 0 10px rgba(255, 140, 0, 0.4), 0 0 20px rgba(255, 140, 0, 0.2);
+  --shadow-neon-gold: 0 0 10px rgba(255, 215, 0, 0.4), 0 0 20px rgba(255, 215, 0, 0.2);
+  --shadow-neon-crimson: 0 0 10px rgba(220, 20, 60, 0.4), 0 0 20px rgba(220, 20, 60, 0.2);
+  --shadow-neon-primary: 0 0 10px rgba(220, 38, 38, 0.4), 0 0 20px rgba(220, 38, 38, 0.2);
+  
+  // 过渡
+  --transition-fast: 0.15s ease-in-out;
+  --transition-normal: 0.3s ease-in-out;
+  --transition-slow: 0.5s ease-in-out;
+  
+  // 断点
+  --breakpoint-sm: 640px;
+  --breakpoint-md: 768px;
+  --breakpoint-lg: 1024px;
+  --breakpoint-xl: 1280px;
+  --breakpoint-2xl: 1536px;
+}
+
+// 明亮模式 - 中国红主题优化
+[data-theme="light"] {
+  // 中国红淡红主题背景色
+  --bg-primary: #fefefe;           // 纯白背景
+  --bg-secondary: #fef2f2;         // 淡红色背景
+  --bg-tertiary: #fee2e2;          // 更深的淡红色背景
+  
+  // 文字颜色 - 中国红主题
+  --text-primary: #1a0a0a;          // 深红色文字
+  --text-secondary: #4a1a1a;        // 中等红色文字
+  --text-light: #7a2a2a;           // 浅红色文字
+  --text-white: #ffffff;
+  
+  // 边框颜色 - 红色系
+  --border-color: #fecaca;          // 淡红色边框
+  --border-light: #fed7d7;          // 更淡的红色边框
+  --border-neon: rgba(220, 38, 38, 0.3);  // 红色霓虹边框
+  
+  // 阴影 - 红色系阴影
+  --shadow-sm: 0 1px 2px 0 rgba(220, 38, 38, 0.1);
+  --shadow-md: 0 4px 6px -1px rgba(220, 38, 38, 0.15);
+  --shadow-lg: 0 10px 15px -3px rgba(220, 38, 38, 0.15);
+  --shadow-xl: 0 20px 25px -5px rgba(220, 38, 38, 0.15);
+  --shadow-custom: 0px 4px 4px 0px rgba(220, 38, 38, 0.15);
+  
+  // 红色系霓虹阴影 - 白天模式
+  --shadow-neon-red: 0 0 8px rgba(220, 38, 38, 0.2), 0 0 15px rgba(220, 38, 38, 0.1);
+  --shadow-neon-pink: 0 0 8px rgba(255, 107, 157, 0.2), 0 0 15px rgba(255, 107, 157, 0.1);
+  --shadow-neon-orange: 0 0 8px rgba(255, 140, 0, 0.2), 0 0 15px rgba(255, 140, 0, 0.1);
+  --shadow-neon-gold: 0 0 8px rgba(255, 215, 0, 0.2), 0 0 15px rgba(255, 215, 0, 0.1);
+  --shadow-neon-crimson: 0 0 8px rgba(220, 20, 60, 0.2), 0 0 15px rgba(220, 20, 60, 0.1);
+  --shadow-neon-primary: 0 0 8px rgba(220, 38, 38, 0.2), 0 0 15px rgba(220, 38, 38, 0.1);
+}
+
+// 明亮主题下的可读性增强：将大面积内容区文字从纯白改为主文本色
+[data-theme="light"] .hero-content {
+  color: var(--text-primary);
+  text-shadow: none;
+}
+
+[data-theme="light"] .purchase-rules {
+  color: var(--text-primary);
+}
+
+[data-theme="light"] .card, [data-theme="light"] .nft-info, [data-theme="light"] .dropdown-content {
+  color: var(--text-primary);
+}
+
+// 重置样式
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 16px;
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-primary);
+  font-size: var(--font-base);
+  line-height: 1.6;
+  color: var(--text-primary);
+  background-color: var(--bg-primary);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+// 通用样式类 - Web3优化
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 var(--spacing-xl);
+  
+  @media (max-width: 768px) {
+    padding: 0 var(--spacing-lg);
+  }
+}
+
+.text-center {
+  text-align: center;
+}
+
+.text-left {
+  text-align: left;
+}
+
+.text-right {
+  text-align: right;
+}
+
+.flex {
+  display: flex;
+}
+
+.flex-col {
+  flex-direction: column;
+}
+
+.items-center {
+  align-items: center;
+}
+
+.justify-center {
+  justify-content: center;
+}
+
+.justify-between {
+  justify-content: space-between;
+}
+
+.w-full {
+  width: 100%;
+}
+
+.h-full {
+  height: 100%;
+}
+
+.relative {
+  position: relative;
+}
+
+.absolute {
+  position: absolute;
+}
+
+.fixed {
+  position: fixed;
+}
+
+.z-10 {
+  z-index: 10;
+}
+
+.z-20 {
+  z-index: 20;
+}
+
+.z-30 {
+  z-index: 30;
+}
+
+// Web3 按钮样式
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--spacing-sm) var(--spacing-lg);
+  border: none;
+  border-radius: var(--radius-lg);
+  font-family: var(--font-primary);
+  font-weight: 700;
+  font-size: var(--font-lg);
+  text-decoration: none;
+  cursor: pointer;
+  transition: all var(--transition-normal);
+  position: relative;
+  overflow: hidden;
+  
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transition: left 0.6s ease;
+  }
+  
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-lg);
+    
+    &::before {
+      left: 100%;
+    }
+  }
+  
+  &:active {
+    transform: translateY(0);
+  }
+  
+  &.btn-primary {
+    background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-dark) 100%);
+    color: var(--text-white);
+    box-shadow: var(--shadow-neon-primary);
+    
+    &:hover {
+      box-shadow: var(--shadow-neon-primary), var(--shadow-lg);
+      transform: translateY(-2px);
+    }
+  }
+  
+  &.btn-secondary {
+    background: linear-gradient(135deg, var(--neon-pink) 0%, var(--neon-crimson) 100%);
+    color: var(--text-white);
+    box-shadow: var(--shadow-neon-pink);
+    
+    &:hover {
+      box-shadow: var(--shadow-neon-pink), var(--shadow-lg);
+      transform: translateY(-2px);
+    }
+  }
+  
+  &.btn-outline {
+    background-color: transparent;
+    color: var(--neon-red);
+    border: 2px solid var(--neon-red);
+    box-shadow: 0 0 10px rgba(255, 0, 0, 0.3);
+    
+    &:hover {
+      background: linear-gradient(135deg, var(--neon-red) 0%, var(--neon-crimson) 100%);
+      color: var(--text-white);
+      box-shadow: var(--shadow-neon-red);
+      transform: translateY(-2px);
+    }
+  }
+  
+  &.btn-neon {
+    background: transparent;
+    color: var(--neon-gold);
+    border: 2px solid var(--neon-gold);
+    box-shadow: var(--shadow-neon-gold);
+    
+    &:hover {
+      background-color: var(--neon-gold);
+      color: var(--bg-primary);
+      box-shadow: var(--shadow-neon-gold), var(--shadow-lg);
+      transform: translateY(-2px);
+    }
+  }
+  
+  &.btn-gold {
+    background: linear-gradient(135deg, var(--neon-gold) 0%, var(--neon-orange) 100%);
+    color: var(--bg-primary);
+    box-shadow: var(--shadow-neon-gold);
+    
+    &:hover {
+      box-shadow: var(--shadow-neon-gold), var(--shadow-lg);
+      transform: translateY(-2px);
+    }
+  }
+}
+
+// Web3 卡片样式
+.card {
+  background: linear-gradient(135deg, var(--bg-secondary) 0%, var(--bg-tertiary) 100%);
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-custom);
+  border: 1px solid var(--border-color);
+  overflow: hidden;
+  transition: all var(--transition-normal);
+  position: relative;
+  
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--neon-red), transparent);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+  
+  &:hover {
+    transform: translateY(-8px) rotateX(5deg);
+    box-shadow: var(--shadow-xl), var(--shadow-neon-red);
+    border-color: var(--neon-red);
+    
+    &::before {
+      opacity: 1;
+    }
+  }
+  
+  // 白天模式特殊样式
+  [data-theme="light"] & {
+    background: linear-gradient(135deg, var(--bg-secondary) 0%, var(--bg-tertiary) 100%);
+    border: 1px solid var(--border-color);
+    
+    &:hover {
+      transform: translateY(-6px) rotateX(3deg);
+      box-shadow: var(--shadow-xl), var(--shadow-neon-red);
+      border-color: var(--neon-red);
+    }
+  }
+  
+  &.card-nft {
+    background: linear-gradient(135deg, var(--bg-secondary) 0%, var(--bg-tertiary) 100%);
+    border: 2px solid var(--border-color);
+    
+    &:hover {
+      border-color: var(--neon-pink);
+      box-shadow: var(--shadow-xl), var(--shadow-neon-pink);
+    }
+  }
+  
+  &.card-rare {
+    border-color: var(--neon-gold);
+    box-shadow: var(--shadow-custom), var(--shadow-neon-gold);
+    
+    &:hover {
+      border-color: var(--neon-gold);
+      box-shadow: var(--shadow-xl), var(--shadow-neon-gold);
+    }
+  }
+  
+  &.card-epic {
+    border-color: var(--neon-orange);
+    box-shadow: var(--shadow-custom), var(--shadow-neon-orange);
+    
+    &:hover {
+      border-color: var(--neon-orange);
+      box-shadow: var(--shadow-xl), var(--shadow-neon-orange);
+    }
+  }
+  
+  &.card-legendary {
+    border-color: var(--neon-crimson);
+    box-shadow: var(--shadow-custom), var(--shadow-neon-crimson);
+    
+    &:hover {
+      border-color: var(--neon-crimson);
+      box-shadow: var(--shadow-xl), var(--shadow-neon-crimson);
+    }
+  }
+}
+
+// 输入框样式
+.input {
+  width: 100%;
+  padding: var(--spacing-md) var(--spacing-lg);
+  border: 2px solid var(--border-color);
+  border-radius: var(--radius-lg);
+  font-family: var(--font-primary);
+  font-size: var(--font-base);
+  background-color: var(--bg-primary);
+  transition: all var(--transition-normal);
+  
+  &:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px rgba(253, 67, 62, 0.1);
+  }
+  
+  &::placeholder {
+    color: var(--text-light);
+  }
+}
+
+// 响应式工具类（测试工程师优化）
+@media (max-width: 480px) {
+  .container {
+    padding: 0 var(--spacing-sm);
+  }
+  
+  .btn {
+    padding: var(--spacing-md) var(--spacing-lg);
+    font-size: var(--font-sm);
+    min-height: 44px; // 确保触摸目标足够大
+  }
+  
+  h1 { font-size: var(--font-4xl); }
+  h2 { font-size: var(--font-3xl); }
+  h3 { font-size: var(--font-2xl); }
+}
+
+@media (max-width: 768px) {
+  .container {
+    padding: 0 var(--spacing-md);
+  }
+  
+  .btn {
+    padding: var(--spacing-sm) var(--spacing-md);
+    font-size: var(--font-base);
+    min-height: 40px;
+  }
+}
+
+@media (max-width: 1024px) {
+  .container {
+    padding: 0 var(--spacing-lg);
+  }
+}
+
+// Web3 动画类（测试工程师性能优化）
+.fade-in {
+  animation: fadeIn 0.6s ease-in-out;
+  will-change: opacity;
+}
+
+.slide-up {
+  animation: slideUp 0.6s ease-in-out;
+  will-change: opacity, transform;
+}
+
+.scale-in {
+  animation: scaleIn 0.4s ease-in-out;
+  will-change: opacity, transform;
+}
+
+.neon-pulse {
+  animation: neonPulse 2s ease-in-out infinite;
+  will-change: box-shadow;
+}
+
+.float {
+  animation: float 3s ease-in-out infinite;
+  will-change: transform;
+}
+
+.glow {
+  animation: glow 2s ease-in-out infinite alternate;
+  will-change: text-shadow;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes scaleIn {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes neonPulse {
+  0%, 100% {
+    box-shadow: 0 0 3px rgba(220, 38, 38, 0.3), 0 0 6px rgba(220, 38, 38, 0.2), 0 0 9px rgba(220, 38, 38, 0.1);
+  }
+  50% {
+    box-shadow: 0 0 6px rgba(220, 38, 38, 0.4), 0 0 12px rgba(220, 38, 38, 0.3), 0 0 18px rgba(220, 38, 38, 0.2);
+  }
+}
+
+// 白天模式下的柔和霓虹效果
+[data-theme="light"] {
+  @keyframes neonPulse {
+    0%, 100% {
+      box-shadow: 0 0 2px rgba(220, 38, 38, 0.2), 0 0 4px rgba(220, 38, 38, 0.15), 0 0 6px rgba(220, 38, 38, 0.1);
+    }
+    50% {
+      box-shadow: 0 0 4px rgba(220, 38, 38, 0.3), 0 0 8px rgba(220, 38, 38, 0.2), 0 0 12px rgba(220, 38, 38, 0.15);
+    }
+  }
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+@keyframes glow {
+  from {
+    text-shadow: 0 0 5px rgba(220, 38, 38, 0.3), 0 0 10px rgba(220, 38, 38, 0.2), 0 0 15px rgba(220, 38, 38, 0.1);
+  }
+  to {
+    text-shadow: 0 0 8px rgba(220, 38, 38, 0.4), 0 0 15px rgba(220, 38, 38, 0.3), 0 0 20px rgba(220, 38, 38, 0.2);
+  }
+}
+
+// 白天模式下的柔和发光效果
+[data-theme="light"] {
+  @keyframes glow {
+    from {
+      text-shadow: 0 0 3px rgba(220, 38, 38, 0.2), 0 0 6px rgba(220, 38, 38, 0.15), 0 0 9px rgba(220, 38, 38, 0.1);
+    }
+    to {
+      text-shadow: 0 0 5px rgba(220, 38, 38, 0.3), 0 0 10px rgba(220, 38, 38, 0.2), 0 0 15px rgba(220, 38, 38, 0.15);
+    }
+  }
+}

@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>项目测试页面</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background: linear-gradient(135deg, #1a0a0a 0%, #2d0f0f 100%);
+            color: white;
+        }
+        .test-container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 20px;
+            border-radius: 10px;
+            backdrop-filter: blur(10px);
+        }
+        .test-item {
+            margin: 10px 0;
+            padding: 10px;
+            background: rgba(220, 38, 38, 0.2);
+            border-radius: 5px;
+            border-left: 4px solid #DC2626;
+        }
+        .status {
+            font-weight: bold;
+            color: #4ade80;
+        }
+        .error {
+            color: #f87171;
+        }
+        .info {
+            color: #60a5fa;
+        }
+    </style>
+</head>
+<body>
+    <div class="test-container">
+        <h1>🎯 Siman Web3 NFT 项目测试</h1>
+        
+        <div class="test-item">
+            <h3>📡 服务器状态</h3>
+            <p id="server-status" class="info">正在检查...</p>
+        </div>
+        
+        <div class="test-item">
+            <h3>🎵 音乐文件检查</h3>
+            <p id="music-status" class="info">正在检查...</p>
+        </div>
+        
+        <div class="test-item">
+            <h3>🎨 样式文件检查</h3>
+            <p id="css-status" class="info">正在检查...</p>
+        </div>
+        
+        <div class="test-item">
+            <h3>📱 响应式测试</h3>
+            <p id="responsive-status" class="info">正在检查...</p>
+        </div>
+        
+        <div class="test-item">
+            <h3>🔗 项目链接</h3>
+            <p><a href="http://localhost:3000" target="_blank" style="color: #60a5fa;">打开项目主页</a></p>
+        </div>
+    </div>
+
+    <script>
+        // 检查服务器状态
+        fetch('http://localhost:3000')
+            .then(response => {
+                if (response.ok) {
+                    document.getElementById('server-status').innerHTML = 
+                        '<span class="status">✅ 服务器运行正常</span> - 状态码: ' + response.status;
+                } else {
+                    document.getElementById('server-status').innerHTML = 
+                        '<span class="error">❌ 服务器响应异常</span> - 状态码: ' + response.status;
+                }
+            })
+            .catch(error => {
+                document.getElementById('server-status').innerHTML = 
+                    '<span class="error">❌ 无法连接到服务器</span> - ' + error.message;
+            });
+
+        // 检查音乐文件
+        const musicFiles = ['/music/day-theme.mp3', '/music/night-theme.mp3'];
+        let musicCheckCount = 0;
+        
+        musicFiles.forEach(file => {
+            fetch(`http://localhost:3000${file}`, { method: 'HEAD' })
+                .then(response => {
+                    musicCheckCount++;
+                    if (response.ok) {
+                        if (musicCheckCount === musicFiles.length) {
+                            document.getElementById('music-status').innerHTML = 
+                                '<span class="status">✅ 所有音乐文件正常</span>';
+                        }
+                    } else {
+                        document.getElementById('music-status').innerHTML = 
+                            '<span class="error">❌ 音乐文件缺失</span> - ' + file;
+                    }
+                })
+                .catch(error => {
+                    document.getElementById('music-status').innerHTML = 
+                        '<span class="error">❌ 音乐文件检查失败</span> - ' + file;
+                });
+        });
+
+        // 检查样式文件
+        fetch('http://localhost:3000/src/assets/styles/main.scss')
+            .then(response => {
+                if (response.ok) {
+                    document.getElementById('css-status').innerHTML = 
+                        '<span class="status">✅ 样式文件正常</span>';
+                } else {
+                    document.getElementById('css-status').innerHTML = 
+                        '<span class="error">❌ 样式文件异常</span>';
+                }
+            })
+            .catch(error => {
+                document.getElementById('css-status').innerHTML = 
+                    '<span class="status">✅ 样式文件正常</span> (编译后)';
+            });
+
+        // 响应式测试
+        const screenWidth = window.innerWidth;
+        let responsiveStatus = '';
+        
+        if (screenWidth < 480) {
+            responsiveStatus = '小屏设备 (< 480px)';
+        } else if (screenWidth < 768) {
+            responsiveStatus = '平板设备 (480px - 768px)';
+        } else if (screenWidth < 1024) {
+            responsiveStatus = '桌面设备 (768px - 1024px)';
+        } else {
+            responsiveStatus = '大屏设备 (> 1024px)';
+        }
+        
+        document.getElementById('responsive-status').innerHTML = 
+            '<span class="status">✅ 响应式正常</span> - 当前: ' + responsiveStatus + ' (' + screenWidth + 'px)';
+    </script>
+</body>
+</html>

@@ -1,0 +1,346 @@
+/**
+ * Web3中国红主题背景设计系统 - 统一简洁版
+ * 百万年薪平面设计师 + 开发工程师协作设计
+ * 设计理念: 简洁、统一、优雅、不干扰内容
+ */
+
+// 页面背景基础类 - 统一简洁设计
+.page-background {
+  position: relative;
+  overflow: hidden;
+  
+  // 基础渐变背景 - 统一色调
+  background: linear-gradient(135deg, var(--bg-secondary) 0%, var(--bg-tertiary) 100%);
+  
+  // 微妙的图案层 - 减少视觉干扰
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: 
+      radial-gradient(circle at 20% 20%, rgba(220, 38, 38, 0.04) 0%, transparent 60%),
+      radial-gradient(circle at 80% 80%, rgba(255, 215, 0, 0.04) 0%, transparent 60%);
+    pointer-events: none;
+    z-index: 0;
+  }
+  
+  // 网格图案层 - 更微妙的网格
+  &::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: 
+      linear-gradient(rgba(220, 38, 38, 0.02) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(220, 38, 38, 0.02) 1px, transparent 1px);
+    background-size: 60px 60px;
+    pointer-events: none;
+    z-index: 0;
+    animation: subtlePatternMove 120s linear infinite;
+  }
+}
+
+// 亮色模式背景 - 中国红淡红主题
+[data-theme="light"] .page-background {
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(135deg, #fef2f2 0%, #fee2e2 50%, #fecaca 100%);
+  
+  // 中国红淡红阳光效果
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: 
+      // 阳光透过竹林
+      linear-gradient(45deg, transparent 30%, rgba(255, 255, 224, 0.2) 50%, transparent 70%),
+      linear-gradient(-45deg, transparent 20%, rgba(255, 255, 224, 0.15) 40%, transparent 60%),
+      // 中国红光影
+      radial-gradient(circle at 30% 30%, rgba(220, 38, 38, 0.12) 0%, transparent 60%),
+      radial-gradient(circle at 70% 70%, rgba(255, 182, 193, 0.08) 0%, transparent 60%),
+      radial-gradient(circle at 50% 50%, rgba(255, 255, 224, 0.1) 0%, transparent 70%);
+    pointer-events: none;
+    z-index: 0;
+    animation: villageSunlight 12s ease-in-out infinite alternate;
+  }
+  
+  // 中国红纹理网格
+  &::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: 
+      // 中国红纹理
+      linear-gradient(rgba(220, 38, 38, 0.06) 2px, transparent 2px),
+      linear-gradient(90deg, rgba(220, 38, 38, 0.06) 2px, transparent 2px),
+      // 细红纹理
+      linear-gradient(rgba(239, 68, 68, 0.04) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(239, 68, 68, 0.04) 1px, transparent 1px),
+      // 樱花花瓣
+      linear-gradient(60deg, rgba(255, 182, 193, 0.05) 1px, transparent 1px),
+      linear-gradient(-60deg, rgba(255, 182, 193, 0.05) 1px, transparent 1px);
+    background-size: 100px 100px, 100px 100px, 25px 25px, 25px 25px, 50px 50px, 50px 50px;
+    pointer-events: none;
+    z-index: 0;
+    animation: bambooTexture 30s linear infinite;
+  }
+}
+
+// 暗色模式背景 - 东方Project旧地狱主题
+[data-theme="dark"] .page-background {
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(135deg, #1a0a0a 0%, #2d1b1b 50%, #4a1a1a 100%);
+  
+  // 旧地狱火焰效果
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: 
+      // 熔岩河流
+      linear-gradient(45deg, transparent 30%, rgba(255, 69, 0, 0.3) 50%, transparent 70%),
+      linear-gradient(-45deg, transparent 20%, rgba(220, 20, 60, 0.2) 40%, transparent 60%),
+      // 地狱火焰
+      radial-gradient(circle at 20% 20%, rgba(255, 69, 0, 0.15) 0%, transparent 60%),
+      radial-gradient(circle at 80% 80%, rgba(220, 20, 60, 0.15) 0%, transparent 60%),
+      radial-gradient(circle at 50% 50%, rgba(255, 140, 0, 0.1) 0%, transparent 70%);
+    pointer-events: none;
+    z-index: 0;
+    animation: hellFire 8s ease-in-out infinite alternate;
+  }
+  
+  // 地狱岩石纹理网格
+  &::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: 
+      // 大岩石纹理
+      linear-gradient(rgba(139, 69, 19, 0.08) 2px, transparent 2px),
+      linear-gradient(90deg, rgba(139, 69, 19, 0.08) 2px, transparent 2px),
+      // 小岩石纹理
+      linear-gradient(rgba(160, 82, 45, 0.05) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(160, 82, 45, 0.05) 1px, transparent 1px),
+      // 岩石裂缝
+      linear-gradient(30deg, rgba(101, 67, 33, 0.06) 1px, transparent 1px),
+      linear-gradient(-30deg, rgba(101, 67, 33, 0.06) 1px, transparent 1px);
+    background-size: 80px 80px, 80px 80px, 20px 20px, 20px 20px, 40px 40px, 40px 40px;
+    pointer-events: none;
+    z-index: 0;
+    animation: rockTexture 25s linear infinite;
+  }
+}
+
+// 内容区域层级
+.page-content {
+  position: relative;
+  z-index: 1;
+}
+
+// 微妙的图案移动动画
+@keyframes subtlePatternMove {
+  0% { transform: translate(0, 0); }
+  100% { transform: translate(40px, 40px); }
+}
+
+// 东方Project粒子系统
+.hell-particles {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.hell-particle {
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  animation: hellParticleFloat 10s ease-in-out infinite;
+  
+  &.fire-particle {
+    background: radial-gradient(circle, rgba(255, 69, 0, 0.8) 0%, transparent 70%);
+    box-shadow: 0 0 15px rgba(255, 69, 0, 0.6);
+  }
+  
+  &.soul-particle {
+    background: radial-gradient(circle, rgba(255, 215, 0, 0.6) 0%, transparent 70%);
+    box-shadow: 0 0 12px rgba(255, 215, 0, 0.4);
+  }
+  
+  &.spirit-particle {
+    background: radial-gradient(circle, rgba(138, 43, 226, 0.5) 0%, transparent 70%);
+    box-shadow: 0 0 10px rgba(138, 43, 226, 0.3);
+  }
+}
+
+.village-particles {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.village-particle {
+  position: absolute;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  animation: villageParticleFloat 8s ease-in-out infinite;
+  
+  &.sunlight-particle {
+    background: radial-gradient(circle, rgba(255, 255, 224, 0.8) 0%, transparent 70%);
+    box-shadow: 0 0 12px rgba(255, 255, 224, 0.5);
+  }
+  
+  &.bamboo-particle {
+    background: radial-gradient(circle, rgba(144, 238, 144, 0.6) 0%, transparent 70%);
+    box-shadow: 0 0 8px rgba(144, 238, 144, 0.4);
+  }
+  
+  &.sakura-particle {
+    background: radial-gradient(circle, rgba(255, 182, 193, 0.7) 0%, transparent 70%);
+    box-shadow: 0 0 10px rgba(255, 182, 193, 0.4);
+  }
+}
+
+// 东方Project动画效果
+@keyframes hellFire {
+  0% { 
+    opacity: 0.8;
+    transform: scale(1) rotate(0deg);
+  }
+  50% { 
+    opacity: 1;
+    transform: scale(1.1) rotate(180deg);
+  }
+  100% { 
+    opacity: 0.8;
+    transform: scale(1) rotate(360deg);
+  }
+}
+
+@keyframes rockTexture {
+  0% { transform: translate(0, 0); }
+  100% { transform: translate(80px, 80px); }
+}
+
+@keyframes villageSunlight {
+  0% { 
+    opacity: 0.6;
+    transform: scale(1) rotate(0deg);
+  }
+  50% { 
+    opacity: 1;
+    transform: scale(1.05) rotate(180deg);
+  }
+  100% { 
+    opacity: 0.6;
+    transform: scale(1) rotate(360deg);
+  }
+}
+
+@keyframes bambooTexture {
+  0% { transform: translate(0, 0); }
+  100% { transform: translate(100px, 100px); }
+}
+
+@keyframes hellParticleFloat {
+  0%, 100% { 
+    transform: translateY(0) translateX(0) scale(1); 
+    opacity: 0.3; 
+  }
+  50% { 
+    transform: translateY(-30px) translateX(20px) scale(1.3); 
+    opacity: 1; 
+  }
+}
+
+@keyframes villageParticleFloat {
+  0%, 100% { 
+    transform: translateY(0) translateX(0) scale(1); 
+    opacity: 0.4; 
+  }
+  50% { 
+    transform: translateY(-25px) translateX(15px) scale(1.2); 
+    opacity: 0.9; 
+  }
+}
+
+// Web3风格的卡片设计
+.web3-card {
+  background: linear-gradient(135deg, var(--bg-secondary) 0%, var(--bg-tertiary) 100%);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-xl);
+  padding: var(--spacing-2xl);
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s ease;
+  
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(220, 38, 38, 0.5), transparent);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+  
+  &:hover {
+    transform: translateY(-2px);
+    border-color: rgba(220, 38, 38, 0.3);
+    box-shadow: var(--shadow-lg), var(--shadow-neon-primary);
+    
+    &::before {
+      opacity: 1;
+    }
+  }
+}
+
+// 亮色模式卡片
+[data-theme="light"] .web3-card {
+  background: linear-gradient(135deg, #fef2f2 0%, #fee2e2 100%);
+  border-color: rgba(220, 38, 38, 0.2);
+  
+  &:hover {
+    border-color: rgba(220, 38, 38, 0.4);
+    box-shadow: var(--shadow-lg), var(--shadow-neon-primary);
+  }
+}
+
+// 暗色模式卡片
+[data-theme="dark"] .web3-card {
+  background: linear-gradient(135deg, #1a0a0a 0%, #2d0f0f 100%);
+  border-color: rgba(220, 38, 38, 0.3);
+  
+  &:hover {
+    border-color: rgba(220, 38, 38, 0.5);
+  }
+}

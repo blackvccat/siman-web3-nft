@@ -1,0 +1,29 @@
+{
+  "name": "Siman Liquor - 希漫酒业",
+  "short_name": "Siman Liquor",
+  "description": "传承千年酒文化，创新现代酿造技术",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#FD433E",
+  "theme_color": "#FD433E",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "/images/logo.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/images/logo.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ],
+  "categories": ["business", "food", "lifestyle"],
+  "lang": "zh-CN",
+  "dir": "ltr",
+  "scope": "/",
+  "prefer_related_applications": false
+}

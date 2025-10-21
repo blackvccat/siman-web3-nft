@@ -95,19 +95,19 @@ const products = computed(() => [
     id: 1,
     name: appStore.t('home.products.redWine'),
     description: appStore.t('home.products.redWineDesc'),
-    image: './images/red-wine.jpg'
+    image: '/images/red-wine.jpg'
   },
   {
     id: 2,
     name: appStore.t('home.products.whisky'),
     description: appStore.t('home.products.whiskyDesc'),
-    image: './images/whisky.jpg'
+    image: '/images/whisky.jpg'
   },
   {
     id: 3,
     name: appStore.t('home.products.whiteWine'),
     description: appStore.t('home.products.whiteWineDesc'),
-    image: './images/white-wine.jpg'
+    image: '/images/white-wine.jpg'
   }
 ])
 

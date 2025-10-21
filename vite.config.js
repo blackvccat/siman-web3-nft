@@ -5,6 +5,7 @@ import { resolve } from 'path'
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [vue()],
+  base: '/siman-web3-nft/', // GitHub Pages 部署路径
   resolve: {
     alias: {
       '@': resolve(__dirname, 'src'),

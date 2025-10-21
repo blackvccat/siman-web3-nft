@@ -59,7 +59,7 @@
         <div class="products-grid">
           <div class="product-card" v-for="product in products" :key="product.id">
             <div class="product-image">
-              <img :src="product.image" :alt="product.name" />
+              <img :src="product.image" :alt="product.name" @error="handleImageError" @load="handleImageLoad" />
             </div>
             <div class="product-info">
               <h3 class="product-name">{{ product.name }}</h3>
@@ -95,25 +95,37 @@ const products = computed(() => [
     id: 1,
     name: appStore.t('home.products.redWine'),
     description: appStore.t('home.products.redWineDesc'),
-    image: '/images/red-wine.jpg'
+    image: './images/red-wine.jpg'
   },
   {
     id: 2,
     name: appStore.t('home.products.whisky'),
     description: appStore.t('home.products.whiskyDesc'),
-    image: '/images/whisky.jpg'
+    image: './images/whisky.jpg'
   },
   {
     id: 3,
     name: appStore.t('home.products.whiteWine'),
     description: appStore.t('home.products.whiteWineDesc'),
-    image: '/images/white-wine.jpg'
+    image: './images/white-wine.jpg'
   }
 ])
+
+// 图片加载处理
+const handleImageError = (event) => {
+  console.error('图片加载失败:', event.target.src)
+  // 设置默认图片或显示错误状态
+  event.target.style.display = 'none'
+}
+
+const handleImageLoad = (event) => {
+  console.log('图片加载成功:', event.target.src)
+}
 
 onMounted(() => {
   // 页面加载完成后的初始化
   console.log('Home page mounted')
+  console.log('产品数据:', products.value)
 })
 </script>
 

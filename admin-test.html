@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Siman NFT 管理平台测试</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; }
+        .test-section { margin: 20px 0; padding: 15px; border: 1px solid #ddd; border-radius: 5px; }
+        .success { background-color: #d4edda; border-color: #c3e6cb; }
+        .error { background-color: #f8d7da; border-color: #f5c6cb; }
+        .info { background-color: #d1ecf1; border-color: #bee5eb; }
+        button { padding: 10px 15px; margin: 5px; cursor: pointer; }
+        pre { background-color: #f8f9fa; padding: 10px; border-radius: 3px; overflow-x: auto; }
+    </style>
+</head>
+<body>
+    <h1>Siman NFT 管理平台功能测试</h1>
+    
+    <div class="test-section info">
+        <h3>测试说明</h3>
+        <p>此页面用于测试Siman NFT管理平台的各项功能</p>
+        <p><strong>后端API地址:</strong> http://localhost:3004</p>
+        <p><strong>前端地址:</strong> http://localhost:3000</p>
+    </div>
+
+    <div class="test-section">
+        <h3>1. 后端服务健康检查</h3>
+        <button onclick="testHealth()">测试健康检查</button>
+        <div id="health-result"></div>
+    </div>
+
+    <div class="test-section">
+        <h3>2. 商品API测试</h3>
+        <button onclick="testProducts()">获取商品列表</button>
+        <div id="products-result"></div>
+    </div>
+
+    <div class="test-section">
+        <h3>3. 用户注册测试</h3>
+        <button onclick="testRegister()">测试用户注册</button>
+        <div id="register-result"></div>
+    </div>
+
+    <div class="test-section">
+        <h3>4. 管理员登录测试</h3>
+        <button onclick="testAdminLogin()">测试管理员登录</button>
+        <div id="login-result"></div>
+    </div>
+
+    <div class="test-section">
+        <h3>5. 管理功能测试</h3>
+        <button onclick="testAdminProducts()">测试商品管理</button>
+        <button onclick="testInventory()">测试库存管理</button>
+        <div id="admin-result"></div>
+    </div>
+
+    <div class="test-section">
+        <h3>6. 购物车功能测试</h3>
+        <button onclick="testCart()">测试购物车</button>
+        <div id="cart-result"></div>
+    </div>
+
+    <script>
+        const API_BASE = 'http://localhost:3004/api/v1';
+        let authToken = null;
+
+        // 显示结果
+        function showResult(elementId, data, isSuccess = true) {
+            const element = document.getElementById(elementId);
+            element.className = isSuccess ? 'success' : 'error';
+            element.innerHTML = `<pre>${JSON.stringify(data, null, 2)}</pre>`;
+        }
+
+        // 1. 健康检查测试
+        async function testHealth() {
+            try {
+                const response = await fetch('http://localhost:3004/health');
+                const data = await response.json();
+                showResult('health-result', data, response.ok);
+            } catch (error) {
+                showResult('health-result', { error: error.message }, false);
+            }
+        }
+
+        // 2. 商品API测试
+        async function testProducts() {
+            try {
+                const response = await fetch(`${API_BASE}/products`);
+                const data = await response.json();
+                showResult('products-result', data, response.ok);
+            } catch (error) {
+                showResult('products-result', { error: error.message }, false);
+            }
+        }
+
+        // 3. 用户注册测试
+        async function testRegister() {
+            try {
+                const response = await fetch(`${API_BASE}/auth/register`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        email: 'test@siman.com',
+                        password: 'test123',
+                        verificationCode: '123456',
+                        name: '测试用户'
+                    })
+                });
+                const data = await response.json();
+                showResult('register-result', data, response.ok);
+            } catch (error) {
+                showResult('register-result', { error: error.message }, false);
+            }
+        }
+
+        // 4. 管理员登录测试
+        async function testAdminLogin() {
+            try {
+                const response = await fetch(`${API_BASE}/auth/login`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        email: 'admin@siman.com',
+                        password: 'admin123'
+                    })
+                });
+                const data = await response.json();
+                
+                if (data.success && data.data.token) {
+                    authToken = data.data.token;
+                    showResult('login-result', { 
+                        message: '登录成功', 
+                        token: authToken.substring(0, 20) + '...',
+                        user: data.data.user 
+                    }, true);
+                } else {
+                    showResult('login-result', data, false);
+                }
+            } catch (error) {
+                showResult('login-result', { error: error.message }, false);
+            }
+        }
+
+        // 5. 管理功能测试
+        async function testAdminProducts() {
+            if (!authToken) {
+                showResult('admin-result', { error: '请先登录' }, false);
+                return;
+            }
+
+            try {
+                const response = await fetch(`${API_BASE}/admin/products`, {
+                    headers: {
+                        'Authorization': `Bearer ${authToken}`
+                    }
+                });
+                const data = await response.json();
+                showResult('admin-result', data, response.ok);
+            } catch (error) {
+                showResult('admin-result', { error: error.message }, false);
+            }
+        }
+
+        async function testInventory() {
+            if (!authToken) {
+                showResult('admin-result', { error: '请先登录' }, false);
+                return;
+            }
+
+            try {
+                const response = await fetch(`${API_BASE}/admin/inventory/overview`, {
+                    headers: {
+                        'Authorization': `Bearer ${authToken}`
+                    }
+                });
+                const data = await response.json();
+                showResult('admin-result', data, response.ok);
+            } catch (error) {
+                showResult('admin-result', { error: error.message }, false);
+            }
+        }
+
+        // 6. 购物车功能测试
+        async function testCart() {
+            if (!authToken) {
+                showResult('cart-result', { error: '请先登录' }, false);
+                return;
+            }
+
+            try {
+                const response = await fetch(`${API_BASE}/cart`, {
+                    headers: {
+                        'Authorization': `Bearer ${authToken}`
+                    }
+                });
+                const data = await response.json();
+                showResult('cart-result', data, response.ok);
+            } catch (error) {
+                showResult('cart-result', { error: error.message }, false);
+            }
+        }
+
+        // 页面加载时自动运行基础测试
+        window.onload = function() {
+            testHealth();
+            testProducts();
+        };
+    </script>
+</body>
+</html>

@@ -1,7 +1,7 @@
 {
   "name": "siman-liquor",
-  "version": "1.0.0",
-  "description": "Siman Liquor - 希漫酒业官网",
+  "version": "2.0.0",
+  "description": "Siman Web3 NFT - 希漫酒业电商平台",
   "type": "module",
   "scripts": {
     "dev": "vite",

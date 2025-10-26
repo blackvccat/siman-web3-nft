@@ -41,6 +41,13 @@
       位置: 固定在页面右上角
     -->
     <MusicPlayer />
+    
+    <!-- 
+      购物车抽屉
+      功能: 显示购物车内容，支持商品管理
+      位置: 右侧滑出抽屉
+    -->
+    <CartDrawer />
   </div>
 </template>
 
@@ -71,6 +78,7 @@ import '@/utils/musicTest'
 import AppHeader from '@/components/layout/AppHeader.vue'  // 应用头部组件
 import BackToTop from '@/components/common/BackToTop.vue'  // 返回顶部按钮
 import MusicPlayer from '@/components/common/MusicPlayer.vue'  // 全局音乐播放器
+import CartDrawer from '@/components/common/CartDrawer.vue'  // 购物车抽屉
 
 // 获取应用状态管理实例
 const appStore = useAppStore()

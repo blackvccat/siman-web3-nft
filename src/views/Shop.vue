@@ -60,7 +60,7 @@
                 </div>
                 <div class="nft-actions">
                   <router-link to="/learn-more" class="btn btn-outline">{{ appStore.t('shop.learnMore') }}</router-link>
-                  <button class="btn btn-gold buy-btn" @click="handleBuyNFT(nft)">{{ appStore.t('shop.buyNow') }}</button>
+                  <button class="btn btn-gold buy-btn" @click="handleAddToCart(nft)">{{ appStore.t('cart.addToCart') }}</button>
                 </div>
               </div>
             </div>
@@ -79,16 +79,30 @@
     
     <!-- 页脚 -->
     <AppFooter />
+    
+    <!-- 登录模态框 -->
+    <LoginModal 
+      v-if="showLoginModal"
+      @close="handleCloseLogin"
+      @login-success="handleLoginSuccess"
+    />
   </div>
 </template>
 
 <script setup>
-import { onMounted, computed } from 'vue'
+import { onMounted, computed, ref } from 'vue'
 import AppHeader from '@/components/layout/AppHeader.vue'
 import AppFooter from '@/components/layout/AppFooter.vue'
+import LoginModal from '@/components/common/LoginModal.vue'
 import { useAppStore } from '@/stores/app'
+import { useCartStore } from '@/stores/cart'
 
 const appStore = useAppStore()
+const cartStore = useCartStore()
+
+// 登录状态
+const showLoginModal = ref(false)
+const isLoggedIn = ref(false)
 
 // NFT产品数据（根据语言动态描述）
 const nftProducts = computed(() => [
@@ -145,16 +159,40 @@ const nftProducts = computed(() => [
 // 获取稀有度文本（多语言）
 const getRarityText = (rarity) => appStore.t(`shop.rarity.${rarity}`) || appStore.t('shop.rarity.common')
 
-// 购买NFT处理函数
-const handleBuyNFT = (nft) => {
-  if (!appStore.isWalletConnected) {
-    alert(appStore.t('common.connectWallet'))
+// 添加到购物车处理函数
+const handleAddToCart = async (nft) => {
+  // 检查用户是否已登录
+  const token = localStorage.getItem('siman-token')
+  if (!token) {
+    showLoginModal.value = true
     return
   }
   
-  // 这里可以添加购买逻辑
-  console.log('购买NFT:', nft.name)
-  alert(`${appStore.t('shop.buyNow')}: ${nft.name}`)
+  try {
+    // 添加到购物车
+    await cartStore.addItem(nft, 1)
+    
+    // 显示成功提示
+    const message = appStore.t('cart.itemAdded')
+    console.log(message, nft.name)
+    
+    // 可以添加更友好的提示，比如Toast通知
+    alert(`${message}: ${nft.name}`)
+  } catch (error) {
+    console.error('添加到购物车失败:', error)
+    alert(`添加失败: ${error.message}`)
+  }
+}
+
+// 登录成功处理
+const handleLoginSuccess = (user) => {
+  isLoggedIn.value = true
+  showLoginModal.value = false
+}
+
+// 关闭登录模态框
+const handleCloseLogin = () => {
+  showLoginModal.value = false
 }
 
 onMounted(() => {

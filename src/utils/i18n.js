@@ -122,6 +122,28 @@ export const translations = {
       terms: '服务条款',
       cookies: 'Cookie政策'
     },
+    // 购物车
+    cart: {
+      title: '购物车',
+      empty: '购物车为空',
+      emptyDescription: '您的购物车中还没有商品，快去挑选您喜欢的酒类NFT吧！',
+      startShopping: '开始购物',
+      viewCart: '查看购物车',
+      price: '价格',
+      subtotal: '小计',
+      total: '总计',
+      clearCart: '清空购物车',
+      checkout: '结算',
+      confirmCheckout: '确认要结算这些商品吗？',
+      confirmRemove: '确认要移除此商品吗？',
+      removeItem: '移除商品',
+      checkoutSuccess: '结算成功！感谢您的购买。',
+      quantity: '数量',
+      itemAdded: '商品已添加到购物车',
+      itemRemoved: '商品已从购物车移除',
+      quantityUpdated: '商品数量已更新',
+      addToCart: '加入购物车'
+    },
     // 通用
     common: {
       walletConnected: '钱包已连接',
@@ -247,6 +269,28 @@ export const translations = {
         messagePlaceholder: 'Please describe your needs or questions in detail',
         send: 'Send'
       }
+    },
+    // Cart
+    cart: {
+      title: 'Shopping Cart',
+      empty: 'Your cart is empty',
+      emptyDescription: 'Your shopping cart is empty. Start exploring our amazing wine NFTs!',
+      startShopping: 'Start Shopping',
+      viewCart: 'View Cart',
+      price: 'Price',
+      subtotal: 'Subtotal',
+      total: 'Total',
+      clearCart: 'Clear Cart',
+      checkout: 'Checkout',
+      confirmCheckout: 'Are you sure you want to checkout these items?',
+      confirmRemove: 'Are you sure you want to remove this item?',
+      removeItem: 'Remove Item',
+      checkoutSuccess: 'Checkout successful! Thank you for your purchase.',
+      quantity: 'Quantity',
+      itemAdded: 'Item added to cart',
+      itemRemoved: 'Item removed from cart',
+      quantityUpdated: 'Item quantity updated',
+      addToCart: 'Add to Cart'
     },
     // Footer
     footer: {

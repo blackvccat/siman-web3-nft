@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>登录测试</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 600px;
+            margin: 50px auto;
+            padding: 20px;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+        input {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 16px;
+        }
+        button {
+            background: #007bff;
+            color: white;
+            padding: 12px 24px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            margin-right: 10px;
+        }
+        button:hover {
+            background: #0056b3;
+        }
+        .result {
+            margin-top: 20px;
+            padding: 15px;
+            border-radius: 4px;
+            white-space: pre-wrap;
+        }
+        .success {
+            background: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+        .error {
+            background: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+    </style>
+</head>
+<body>
+    <h1>登录功能测试</h1>
+    
+    <form id="loginForm">
+        <div class="form-group">
+            <label for="email">邮箱:</label>
+            <input type="email" id="email" value="admin@siman.com" required>
+        </div>
+        
+        <div class="form-group">
+            <label for="password">密码:</label>
+            <input type="password" id="password" value="admin123" required>
+        </div>
+        
+        <button type="submit">登录</button>
+        <button type="button" onclick="testCart()">测试购物车</button>
+    </form>
+    
+    <div id="result"></div>
+
+    <script>
+        const API_BASE_URL = 'http://localhost:3004/api/v1';
+        
+        document.getElementById('loginForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+            
+            try {
+                const response = await fetch(`${API_BASE_URL}/auth/login`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ email, password })
+                });
+                
+                const data = await response.json();
+                
+                if (data.success) {
+                    localStorage.setItem('siman-token', data.data.token);
+                    showResult('登录成功！\n\nToken: ' + data.data.token.substring(0, 20) + '...\n\n用户信息:\n' + JSON.stringify(data.data.user, null, 2), 'success');
+                } else {
+                    showResult('登录失败: ' + data.error.message, 'error');
+                }
+            } catch (error) {
+                showResult('请求错误: ' + error.message, 'error');
+            }
+        });
+        
+        async function testCart() {
+            const token = localStorage.getItem('siman-token');
+            if (!token) {
+                showResult('请先登录', 'error');
+                return;
+            }
+            
+            try {
+                // 获取商品列表
+                const productsResponse = await fetch(`${API_BASE_URL}/products`);
+                const productsData = await productsResponse.json();
+                
+                if (!productsData.success) {
+                    showResult('获取商品失败: ' + productsData.error.message, 'error');
+                    return;
+                }
+                
+                const firstProduct = productsData.data.products[0];
+                
+                // 添加到购物车
+                const cartResponse = await fetch(`${API_BASE_URL}/cart`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${token}`
+                    },
+                    body: JSON.stringify({
+                        productId: firstProduct.id,
+                        quantity: 1
+                    })
+                });
+                
+                const cartData = await cartResponse.json();
+                
+                if (cartData.success) {
+                    showResult('购物车测试成功！\n\n商品: ' + firstProduct.name + '\n价格: ' + firstProduct.price + ' ETH\n\n购物车总价: ' + cartData.data.totalPrice + ' ETH', 'success');
+                } else {
+                    showResult('购物车测试失败: ' + cartData.error.message, 'error');
+                }
+            } catch (error) {
+                showResult('购物车测试错误: ' + error.message, 'error');
+            }
+        }
+        
+        function showResult(message, type) {
+            const resultDiv = document.getElementById('result');
+            resultDiv.textContent = message;
+            resultDiv.className = 'result ' + type;
+        }
+    </script>
+</body>
+</html>

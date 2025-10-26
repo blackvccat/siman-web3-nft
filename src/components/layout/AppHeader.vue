@@ -45,7 +45,8 @@
         移动端: 部分功能移至下拉菜单
       -->
       <div class="header-actions">
-        
+        <!-- 购物车图标 -->
+        <CartIcon />
         
         <!-- 
           主题切换组件
@@ -201,6 +202,7 @@ import { useAppStore } from '@/stores/app'
 
 // 组件导入
 import ThemeToggle from '@/components/common/ThemeToggle.vue'  // 主题切换组件
+import CartIcon from '@/components/common/CartIcon.vue'  // 购物车图标组件
 
 // 获取应用状态管理实例
 const appStore = useAppStore()
